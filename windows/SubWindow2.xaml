@@ -15,52 +15,39 @@
                 </HierarchicalDataTemplate>
             </Menu.ItemTemplate>
         </Menu>
-        <ListBox VerticalAlignment="Top" Height="200" Margin="30" FontSize="30">
-            <ListBoxItem>
-                <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition></ColumnDefinition>
-                        <ColumnDefinition></ColumnDefinition>
-                    </Grid.ColumnDefinitions>
-                    <Image Source="../assect/objcurs_cel_frame0086.png" Grid.Column="0"></Image>
-                    <TextBlock Text="游戏" Grid.Column="1" Width="200" ></TextBlock>
-                </Grid>
-            </ListBoxItem>
-            <ListBoxItem>
-                <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition></ColumnDefinition>
-                        <ColumnDefinition></ColumnDefinition>
-                    </Grid.ColumnDefinitions>
-                    <Image Source="../assect/objcurs_cel_frame0086.png" Grid.Column="0"></Image>
-                    <TextBlock Text="游戏" Grid.Column="1" Width="200" ></TextBlock>
-                </Grid>
-            </ListBoxItem>
-            <ListBoxItem>
-                <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition></ColumnDefinition>
-                        <ColumnDefinition></ColumnDefinition>
-                    </Grid.ColumnDefinitions>
-                    <Image Source="../assect/objcurs_cel_frame0086.png" Grid.Column="0"></Image>
-                    <TextBlock Text="游戏" Grid.Column="1" Width="200" ></TextBlock>
-                </Grid>
-            </ListBoxItem>
-            <ListBoxItem>
-                <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition></ColumnDefinition>
-                        <ColumnDefinition></ColumnDefinition>
-                    </Grid.ColumnDefinitions>
-                    <Image Source="../assect/objcurs_cel_frame0086.png" Grid.Column="0"></Image>
-                    <TextBlock Text="游戏" Grid.Column="1" Width="200" ></TextBlock>
-                </Grid>
-            </ListBoxItem>
+        <ListBox Name="gameList" VerticalAlignment="Top" Height="200" Margin="30" FontSize="30" ItemsSource="{Binding}">
+            <ListBox.ItemTemplate>
+                <HierarchicalDataTemplate>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="auto"></ColumnDefinition>
+                            <ColumnDefinition Width="80"></ColumnDefinition>
+                            <ColumnDefinition Width="200"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Grid.Column="0" Text="{Binding}"></TextBlock>
+                        <Image Source="../assect/objcurs_cel_frame0086.png" Grid.Column="1"></Image>
+                        <TextBlock Text="游戏" Grid.Column="2" ></TextBlock>
+                    </Grid>
+                </HierarchicalDataTemplate>
+            </ListBox.ItemTemplate>
         </ListBox>
+        <!--输入框 START-->
+        <Label HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="10,0,0,150" Width="auto">账号</Label>
+        <TextBox Name="account" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="70,0,0,150" Width="100" ></TextBox>
+        <Label HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="10,0,0,120" Width="auto">密码</Label>
+        <PasswordBox Name="password" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="70,0,0,120" Width="100"></PasswordBox>
+        
+        <Label HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="10,0,0,90" Width="auto">数据绑定</Label>
+        <Label  HorizontalAlignment="Left" 
+                VerticalAlignment="Bottom" Margin="70,0,0,90" 
+                Width="100" 
+                Content="{Binding ElementName=account, Path=Text,Mode=OneWay}"
+               ></Label>
+        <!--输入框 END-->
         <Button HorizontalAlignment="Center" 
                 VerticalAlignment="Bottom" Width="200" 
                 Height="50" Margin="0,0,0,40"
-                Content="开始游戏" FontSize="20" FontWeight="Bold" Background="Green">
+                Content="开始游戏" FontSize="20" FontWeight="Bold" Background="Green" Click="Button_Click">
         </Button>
         <ComboBox Name="selectBox" Margin="0,0,0,150" HorizontalAlignment="Center" VerticalAlignment="Bottom" Width="100" ItemsSource="{Binding Course}"></ComboBox>
         <Label VerticalAlignment="Center"  Content="{Binding ElementName=selectBox, Path=SelectedValue}" HorizontalAlignment="Center" ></Label>
