@@ -16,6 +16,11 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="Autofac" Version="6.5.0" />
+    <PackageReference Include="WinFormsComInterop" Version="0.4.3" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Resource Include="assect\objcurs_cel_frame0086.png" />
   </ItemGroup>
 

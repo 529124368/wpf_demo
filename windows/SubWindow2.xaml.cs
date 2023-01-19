@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
 using WpfApp1.models;
+using WpfApp1;
+using Autofac;
 
 namespace WpfApp1.windows
 {
@@ -12,16 +14,18 @@ namespace WpfApp1.windows
     /// </summary>
     public partial class SubWindow2 : Window
     {
-        public SubWindow2()
+        private MyData _my;
+        public SubWindow2(MyData my)
         {
-            InitializeComponent();      
+            InitializeComponent();
+            _my = my;
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            MyData data1 = MyData.GetInstance();
-            data1.Course = new List<string> { "数学", "语文", "体育", "英语" };
-            selectBox.DataContext = data1;
+
+            _my.Course = new List<string> { "数学", "语文", "体育", "英语" };
+            selectBox.DataContext = _my;
 
             List<Menus> box = new List<Menus>();
             Menus a1 = new Menus("菜单1", null);

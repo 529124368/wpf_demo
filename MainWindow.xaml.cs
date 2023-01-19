@@ -21,9 +21,11 @@ namespace WpfApp1
     /// </summary>
     public partial class MainWindow : Window
     {
-        public MainWindow()
+        private MyData _MyData;
+        public MainWindow(MyData myData )
         {
             InitializeComponent();
+            _MyData = myData;
         }
 
 
@@ -50,7 +52,7 @@ namespace WpfApp1
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            mylabel.DataContext = MyData.GetInstance();
+            mylabel.DataContext = _MyData;
         }
     }
 }
