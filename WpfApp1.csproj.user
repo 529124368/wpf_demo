@@ -9,6 +9,27 @@
     </ApplicationDefinition>
   </ItemGroup>
   <ItemGroup>
+    <Compile Update="windows\Login.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="windows\Page1.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="windows\Page2.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="windows\Page3.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="windows\Page4.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="windows\Page5.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="windows\Page6.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="windows\SubWindow1.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -18,6 +39,27 @@
   </ItemGroup>
   <ItemGroup>
     <Page Update="MainWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="windows\Login.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="windows\Page1.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="windows\Page2.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="windows\Page3.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="windows\Page4.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="windows\Page5.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="windows\Page6.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="windows\SubWindow1.xaml">

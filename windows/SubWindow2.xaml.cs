@@ -42,9 +42,14 @@ namespace WpfApp1.windows
 
             menus.DataContext = box;
 
-            //游戏一览渲染
-            int[] ll = new int[9] { 1,2,3,4,5,6,7,8,9};
-            gameList.DataContext = ll;
+            List<GameModel> g = new List<GameModel>();
+            g.Add(new GameModel("暗黑破坏神1", @"D:\BaiduNetdiskDownload\switch_game_maliao\1","lsz1", @"D:\BaiduNetdiskDownload\switch_game_maliao\1"));
+            g.Add(new GameModel("暗黑破坏神2", @"D:\BaiduNetdiskDownload\switch_game_maliao\2", "lsz2", @"D:\BaiduNetdiskDownload\switch_game_maliao\2"));
+            g.Add(new GameModel("暗黑破坏神3", @"D:\BaiduNetdiskDownload\switch_game_maliao\3", "lsz3", @"D:\BaiduNetdiskDownload\switch_game_maliao\3"));
+            g.Add(new GameModel("暗黑破坏神4", @"D:\BaiduNetdiskDownload\switch_game_maliao\4", "lsz1", @"D:\BaiduNetdiskDownload\switch_game_maliao\4"));
+            g.Add(new GameModel("暗黑破坏神5", @"D:\BaiduNetdiskDownload\switch_game_maliao\5", "lsz2", @"D:\BaiduNetdiskDownload\switch_game_maliao\5"));
+            g.Add(new GameModel("暗黑破坏神6", @"D:\BaiduNetdiskDownload\switch_game_maliao\6", "lsz3", @"D:\BaiduNetdiskDownload\switch_game_maliao\6"));
+            gameList.DataContext = g;
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)

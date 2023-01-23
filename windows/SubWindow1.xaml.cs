@@ -1,16 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
+using WpfApp1.models;
+using WpfApp1.tool;
 
 namespace WpfApp1.windows
 {
@@ -19,9 +11,65 @@ namespace WpfApp1.windows
     /// </summary>
     public partial class SubWindow1 : Window
     {
-        public SubWindow1()
+        private Route _route;
+        private ClientHttp _clientHttp;
+
+
+        public SubWindow1(Route route, ClientHttp clientHttp)
         {
             InitializeComponent();
+            _route = route;
+            _clientHttp = clientHttp;
+        }
+
+
+
+        private void ListBox_SelectionChanged1(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            _route.Path = "center";
+            subContent.Navigate(new Uri(_route.GetPageUri(), UriKind.Relative));
+        }
+
+        private void ListBox_SelectionChanged2(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            _route.Path = "store";
+            subContent.Navigate(new Uri(_route.GetPageUri(), UriKind.Relative));
+        }
+
+        private void ListBox_SelectionChanged3(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            _route.Path = "setting";
+            subContent.Navigate(new Uri(_route.GetPageUri(), UriKind.Relative));
+        }
+
+        private void ListBox_SelectionChanged4(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            _route.Path = "users";
+            subContent.Navigate(new Uri(_route.GetPageUri(), UriKind.Relative));
+        }
+
+        private void ListBox_SelectionChanged5(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            _route.Path = "download";
+            subContent.Navigate(new Uri(_route.GetPageUri(), UriKind.Relative));
+        }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            subContent.DataContext = "/windows/Page1.xaml";
+        }
+
+        private void Main_selected(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            _route.Path = "main";
+            subContent.Navigate(new Uri(_route.GetPageUri(), UriKind.Relative));
+            Task.Run(async () =>
+            {
+                //http 请求
+                string token = "bearer " + "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTI3LjAuMC4xL2FwaS91c2VycyIsImlhdCI6MTY3NDM2MDEzOCwiZXhwIjoxNjc0NDM5ODEzLCJuYmYiOjE2NzQ0MzYyMTMsImp0aSI6IlZEMkVZVHFmUDdQTWFZTWUiLCJzdWIiOiIyIiwicHJ2IjoiMjNiZDVjODk0OWY2MDBhZGIzOWU3MDFjNDAwODcyZGI3YTU5NzZmNyJ9.pFSEcpv35_-c0bYLR1puRU6YDr7P6HpwkxVCAXDvTW8";
+                var result = await _clientHttp.SetRequestHeader("Authorization", token).GetResult(Request.get, "users");
+                MessageBox.Show(result);
+            });
         }
     }
 }

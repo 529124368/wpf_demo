@@ -8,6 +8,17 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="assect\apps.png" />
+    <None Remove="assect\diablo.png" />
+    <None Remove="assect\download.png" />
+    <None Remove="assect\game1.png" />
+    <None Remove="assect\game2.png" />
+    <None Remove="assect\heart.png" />
+    <None Remove="assect\home.png" />
+    <None Remove="assect\man.png" />
+    <None Remove="assect\settings.png" />
+    <None Remove="assect\shopping-cart.png" />
+    <None Remove="assect\user-add.png" />
     <None Remove="objcurs_cel_frame0086.png" />
   </ItemGroup>
 
@@ -17,11 +28,34 @@
 
   <ItemGroup>
     <PackageReference Include="Autofac" Version="6.5.0" />
+	 <PackageReference Include="Newtonsoft.Json" Version="*" />
+    <PackageReference Include="LiveCharts.Wpf" Version="0.9.7" />
     <PackageReference Include="WinFormsComInterop" Version="0.4.3" />
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="assect\apps.png" />
+    <Resource Include="assect\diablo.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="assect\download.png" />
+    <Resource Include="assect\game1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="assect\game2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="assect\heart.png" />
+    <Resource Include="assect\home.png">
+      <CopyToOutputDirectory></CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="assect\man.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
     <Resource Include="assect\objcurs_cel_frame0086.png" />
+    <Resource Include="assect\settings.png" />
+    <Resource Include="assect\shopping-cart.png" />
+    <Resource Include="assect\user-add.png" />
   </ItemGroup>
 
 </Project>

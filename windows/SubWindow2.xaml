@@ -6,50 +6,104 @@
         xmlns:local="clr-namespace:WpfApp1.windows"
         xmlns:zc ="clr-namespace:WpfApp1.models"
         mc:Ignorable="d"
-        Title="工具" Height="450" Width="800" Loaded="Window_Loaded">
-    <Grid>
-        <Menu Name="menus" Height="20" VerticalAlignment="Top" Background="Green" ItemsSource="{Binding}">
-            <Menu.ItemTemplate>
-                <HierarchicalDataTemplate DataType="x:Type zc:Menus" ItemsSource="{Binding SubMenu}">
-                    <TextBlock Text="{Binding MenuName}" Foreground="Black"></TextBlock>
-                </HierarchicalDataTemplate>
-            </Menu.ItemTemplate>
-        </Menu>
-        <ListBox Name="gameList" VerticalAlignment="Top" Height="200" Margin="30" FontSize="30" ItemsSource="{Binding}">
-            <ListBox.ItemTemplate>
-                <HierarchicalDataTemplate>
-                    <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="auto"></ColumnDefinition>
-                            <ColumnDefinition Width="80"></ColumnDefinition>
-                            <ColumnDefinition Width="200"></ColumnDefinition>
-                        </Grid.ColumnDefinitions>
-                        <TextBlock Grid.Column="0" Text="{Binding}"></TextBlock>
-                        <Image Source="../assect/objcurs_cel_frame0086.png" Grid.Column="1"></Image>
-                        <TextBlock Text="游戏" Grid.Column="2" ></TextBlock>
-                    </Grid>
-                </HierarchicalDataTemplate>
-            </ListBox.ItemTemplate>
-        </ListBox>
-        <!--输入框 START-->
-        <Label HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="10,0,0,150" Width="auto">账号</Label>
-        <TextBox Name="account" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="70,0,0,150" Width="100" ></TextBox>
-        <Label HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="10,0,0,120" Width="auto">密码</Label>
-        <PasswordBox Name="password" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="70,0,0,120" Width="100"></PasswordBox>
-        
-        <Label HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="10,0,0,90" Width="auto">数据绑定</Label>
-        <Label  HorizontalAlignment="Left" 
+        Title="游戏后台管理系统V1.0" Height="200" Width="400" Loaded="Window_Loaded">
+    <Window.Resources>
+        <Style
+            x:Key="HorizontalAlignedData"
+            BasedOn="{StaticResource {x:Type TextBlock}}"
+            TargetType="{x:Type TextBlock}">
+            <Setter Property="HorizontalAlignment" Value="Center" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+        </Style>
+        <Style x:Key="ColumnHeaderStyle" TargetType="DataGridColumnHeader">
+            <Setter Property="HorizontalContentAlignment"  Value="Center"/>
+        </Style>
+    </Window.Resources>
+    <Viewbox Stretch=" fill">
+        <Canvas Width=" 830" Height="422">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="200"></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <!--菜单栏 START-->
+                <Grid Grid.Column="0">
+                    <DockPanel  DockPanel.Dock="Left" LastChildFill="False">
+                        <StackPanel DockPanel.Dock="Right">
+                            <Label Content="菜单" Width="180" Foreground="Blue"></Label>
+                            <ListBox>
+                                <StackPanel Orientation="Horizontal" Height="60">
+                                    <Image Width="20"  Source="../assect/home.png"/>
+                                    <TextBlock Text="主页" VerticalAlignment="Center" Margin="10"></TextBlock>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal"  Height="60">
+                                    <Image Source="../assect/apps.png" Width="20" ></Image>
+                                    <TextBlock Text="应用中心" VerticalAlignment="Center" Margin="10"></TextBlock>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal"  Height="60">
+                                    <Image Source="../assect/heart.png" Width="20"></Image>
+                                    <TextBlock Text="收藏" VerticalAlignment="Center" Margin="10"></TextBlock>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal"  Height="60">
+                                    <Image Source="../assect/settings.png" Width="20"></Image>
+                                    <TextBlock Text="设定" VerticalAlignment="Center" Margin="10"></TextBlock>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal"  Height="60">
+                                    <Image Source="../assect/user-add.png" Width="20"></Image>
+                                    <TextBlock Text="会员管理" VerticalAlignment="Center" Margin="10"></TextBlock>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal"  Height="60">
+                                    <Image Source="../assect/download.png" Width="20"></Image>
+                                    <TextBlock Text="下载管理" VerticalAlignment="Center" Margin="10"></TextBlock>
+                                </StackPanel>
+                            </ListBox>
+                        </StackPanel>
+                    </DockPanel>
+                </Grid>
+                <!--菜单栏 END-->
+                <Grid Grid.Column="1">
+                    <Menu Name="menus" Height="20" VerticalAlignment="Top" Background="Green" ItemsSource="{Binding}">
+                        <Menu.ItemTemplate>
+                            <HierarchicalDataTemplate DataType="x:Type zc:Menus" ItemsSource="{Binding SubMenu}">
+                                <TextBlock Text="{Binding MenuName}" Foreground="Black"></TextBlock>
+                            </HierarchicalDataTemplate>
+                        </Menu.ItemTemplate>
+                    </Menu>
+                    <DataGrid Name="gameList" Margin="2,20,2,0" 
+                      ItemsSource="{Binding}" 
+                      AutoGenerateColumns="False" 
+                      ColumnHeaderStyle="{StaticResource ColumnHeaderStyle}">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn ElementStyle="{StaticResource HorizontalAlignedData}" Header="游戏名称"  Binding="{Binding Name}" Width="100" MaxWidth="100"></DataGridTextColumn>
+                            <DataGridTextColumn  Header="游戏路径" Binding="{Binding Path}" Width="200" MaxWidth="200"></DataGridTextColumn>
+                            <DataGridTextColumn ElementStyle="{StaticResource HorizontalAlignedData}" Header="开发商" Binding="{Binding Developer}" Width="100" MaxWidth="100"></DataGridTextColumn>
+                            <DataGridTextColumn  Header="存档位置" Binding="{Binding SavePath}" Width="200" MaxWidth="200"></DataGridTextColumn>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                    <!--输入框 START-->
+                    <Label HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="10,0,0,150" Width="auto">账号</Label>
+                    <TextBox Name="account" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="70,0,0,150" Width="100" ></TextBox>
+                    <Label HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="10,0,0,120" Width="auto">密码</Label>
+                    <PasswordBox Name="password" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="70,0,0,120" Width="100"></PasswordBox>
+
+                    <Label HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="10,0,0,90" Width="auto">数据绑定</Label>
+                    <Label  HorizontalAlignment="Left" 
                 VerticalAlignment="Bottom" Margin="70,0,0,90" 
                 Width="100" 
                 Content="{Binding ElementName=account, Path=Text,Mode=OneWay}"
                ></Label>
-        <!--输入框 END-->
-        <Button HorizontalAlignment="Center" 
+                    <!--输入框 END-->
+                    <Button HorizontalAlignment="Center" 
                 VerticalAlignment="Bottom" Width="200" 
                 Height="50" Margin="0,0,0,40"
                 Content="开始游戏" FontSize="20" FontWeight="Bold" Background="Green" Click="Button_Click">
-        </Button>
-        <ComboBox Name="selectBox" Margin="0,0,0,150" HorizontalAlignment="Center" VerticalAlignment="Bottom" Width="100" ItemsSource="{Binding Course}"></ComboBox>
-        <Label VerticalAlignment="Center"  Content="{Binding ElementName=selectBox, Path=SelectedValue}" HorizontalAlignment="Center" ></Label>
-    </Grid>
+                    </Button>
+                    <ComboBox Name="selectBox" Margin="0,0,0,150" HorizontalAlignment="Center" VerticalAlignment="Bottom" Width="100" ItemsSource="{Binding Course}"></ComboBox>
+                    <Label VerticalAlignment="Center"  Content="{Binding ElementName=selectBox, Path=SelectedValue}" HorizontalAlignment="Center" ></Label>
+                </Grid>
+
+            </Grid>
+        </Canvas>
+    </Viewbox>
+    
 </Window>
