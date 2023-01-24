@@ -50,7 +50,7 @@ namespace WpfApp1.tool
                     res =  await _httpClient.GetAsync(uri);
                     break;
                 case Request.post:
-                   res = await _httpClient.PostAsync(uri, new StringContent(JsonData, Encoding.UTF8, "application/json"));
+                    res = await _httpClient.PostAsync(uri, new StringContent(JsonData, Encoding.UTF8, "application/json"));
                     break;
                 case Request.put:
                     res = await  _httpClient.PutAsync(uri, new StringContent(JsonData, Encoding.UTF8, "application/json"));

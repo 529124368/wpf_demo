@@ -9,13 +9,13 @@ namespace WpfApp1.windows
     /// <summary>
     /// SubWindow1.xaml 的交互逻辑
     /// </summary>
-    public partial class SubWindow1 : Window
+    public partial class MainPage : Window
     {
         private Route _route;
         private ClientHttp _clientHttp;
 
 
-        public SubWindow1(Route route, ClientHttp clientHttp)
+        public MainPage(Route route, ClientHttp clientHttp)
         {
             InitializeComponent();
             _route = route;
@@ -65,11 +65,23 @@ namespace WpfApp1.windows
             subContent.Navigate(new Uri(_route.GetPageUri(), UriKind.Relative));
             Task.Run(async () =>
             {
-                //http 请求
+                //http Request
                 string token = "bearer " + "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTI3LjAuMC4xL2FwaS91c2VycyIsImlhdCI6MTY3NDM2MDEzOCwiZXhwIjoxNjc0NDM5ODEzLCJuYmYiOjE2NzQ0MzYyMTMsImp0aSI6IlZEMkVZVHFmUDdQTWFZTWUiLCJzdWIiOiIyIiwicHJ2IjoiMjNiZDVjODk0OWY2MDBhZGIzOWU3MDFjNDAwODcyZGI3YTU5NzZmNyJ9.pFSEcpv35_-c0bYLR1puRU6YDr7P6HpwkxVCAXDvTW8";
                 var result = await _clientHttp.SetRequestHeader("Authorization", token).GetResult(Request.get, "users");
                 MessageBox.Show(result);
             });
+        }
+
+        private void Window_Closed(object sender, EventArgs e)
+        {
+            foreach (Window v in Application.Current.Windows)
+            {
+                if (v != this)
+                {
+                    v.Close();
+                }
+            }
+            this.Close();
         }
     }
 }

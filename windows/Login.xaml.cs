@@ -1,9 +1,10 @@
 ﻿using System;
-using System.Security.Principal;
+using System.Net.Http;
+using System.Threading;
+using System.Threading.Tasks;
 using System.Windows;
-
-using System.Windows.Navigation;
-
+using WpfApp1.service;
+using WpfApp1.tool;
 
 namespace WpfApp1.windows
 {
@@ -12,29 +13,46 @@ namespace WpfApp1.windows
     /// </summary>
     public partial class Login : Window
     {
-        private SubWindow1 _subW;
-        public Login(SubWindow1 subW)
+        private MainPage _subW;
+        private UserService _userService;
+        public Login(MainPage subW, UserService userService)
         {
             InitializeComponent();
             _subW = subW;
+            _userService = userService;
         }
-
 
         //登录处理
         private void LoginButton_Click(object sender, RoutedEventArgs e)
         {
-            //TODO 登录check
-            if (Account.Text.Equals("lsz") && Password.Password.Equals("123"))
+            string account = Account.Text;
+            string password = Password.Password;
+            //登录权限验证
+            Task.Run(async () => {
+                if (await _userService.CheckAuth(account, password))
+                {
+                    await this.Dispatcher.BeginInvoke(() => {
+                        this.Hide();
+                        _subW.ShowDialog();
+                    });
+                }
+                else
+                {
+                    MessageBox.Show("账号密码输入有误,请重新输入");
+                }
+            }); 
+        }
+
+        private void Window_Closed(object sender, EventArgs e)
+        {
+            foreach (Window v in  Application.Current.Windows)
             {
-                _subW.Show();
-                this.Close();
-            }else
-            {
-                MessageBox.Show("账号密码输入有误,请重新输入");
+                if(v != this)
+                {
+                    v.Close();
+                }
             }
-
-
-
+            this.Close();
         }
     }
 }

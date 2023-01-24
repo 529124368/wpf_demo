@@ -30,7 +30,7 @@
     <Compile Update="windows\Page6.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="windows\SubWindow1.xaml.cs">
+    <Compile Update="windows\MainPage.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="windows\SubWindow2.xaml.cs">
@@ -62,7 +62,7 @@
     <Page Update="windows\Page6.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="windows\SubWindow1.xaml">
+    <Page Update="windows\MainPage.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="windows\SubWindow2.xaml">

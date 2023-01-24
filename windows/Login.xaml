@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfApp1.windows"
         mc:Ignorable="d"
-        Title="登录界面" Height="450" Width="400" ResizeMode="NoResize" >
+        Title="登录界面" Height="450" Width="400" ResizeMode="NoResize" Closed="Window_Closed" >
     <Grid Background="#7378DB">
         <Grid.RowDefinitions>
             <RowDefinition></RowDefinition>
@@ -13,7 +13,11 @@
             <RowDefinition></RowDefinition>
             <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
-
+        <StackPanel Grid.Row="0" VerticalAlignment="Center">
+            <TextBlock Text="管理后台登录" HorizontalAlignment="Center" 
+                       Foreground="Black" FontWeight="Bold"
+                       FontSize="30" FontFamily="楷体"></TextBlock>
+        </StackPanel>
         <StackPanel Grid.Row="1" Orientation="Horizontal">
             <StackPanel Grid.Row="0" Orientation="Horizontal">
                 <TextBlock Text="账号" TextAlignment="Center" VerticalAlignment="Center" 

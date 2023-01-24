@@ -4,6 +4,10 @@ using System.Collections.Generic;
 
 namespace WpfApp1.models
 {
+    public class Storage
+    {
+        public static string Token = "";
+    }
     public class MyData
     {
         private string _name = "nihao";

@@ -3,6 +3,7 @@ using Autofac;
 using System;
 using System.Windows;
 using WpfApp1.models;
+using WpfApp1.service;
 using WpfApp1.tool;
 using WpfApp1.windows;
 
@@ -19,10 +20,11 @@ namespace WpfApp1
         protected override void OnStartup(StartupEventArgs e)
         {
             var builder = new ContainerBuilder();
-            builder.RegisterType<MyData>().AsSelf().SingleInstance();
-            builder.RegisterType<Route>().AsSelf().SingleInstance();
-            builder.RegisterType<ClientHttp>().AsSelf().SingleInstance();
-            builder.RegisterType<SubWindow1>().AsSelf().SingleInstance();
+            builder.RegisterType<MyData>().SingleInstance();
+            builder.RegisterType<Route>().SingleInstance();
+            builder.RegisterType<ClientHttp>().SingleInstance();
+            builder.RegisterType<MainPage>().SingleInstance();
+            builder.RegisterType<UserService>().SingleInstance();
 
             // Add the MainWindowclass and later resolve
             builder.RegisterType<Login>().AsSelf();
